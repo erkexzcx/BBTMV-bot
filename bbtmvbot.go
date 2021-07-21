@@ -79,7 +79,7 @@ func processPost(post *website.Post) {
 	} else {
 		allMsg += "No"
 	}
-	sendTelegram(allChatID, msg)
+	sendTelegram(allChatID, allMsg)
 
 	if excludable {
 		return

@@ -115,7 +115,7 @@ func (p *Post) FormatTelegramMessage(IDInDatabase int64) string {
 		fmt.Fprintf(&sb, "» *Floor:* `%d`\n", p.Floor)
 	}
 
-	return sb.String()
+	return strings.TrimSpace(sb.String())
 }
 
 func (p *Post) TrimFields() {

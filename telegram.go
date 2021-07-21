@@ -21,7 +21,7 @@ func initTelegramHandlers() {
 }
 
 func handleCommandInfo(m *telebot.Message) {
-	sendTelegram(m.Chat.ID, "BBTMV - 'Butų Be Tarpininkavimo Mokesčio Vilniuje' is a project intended to help find flats for a rent in Vilnius, Lithuania. All you have to do is to set config using /config command and wait until bot sends you notifications.\n\n**Fun fact** - if you are couple and looking for a flat, then create group chat and add this bot into that group - enable settings and bot will send notifications to the same chat. :)")
+	sendTelegram(m.Chat.ID, "BBTMV - 'Butai Be Tarpininkavimo Mokesčio Vilniuje' bot is a tool intended to help find flats for a rent in Vilnius, Lithuania. In order to use it, set config using /config and wait for Telegram bot to notify you about new posts.\n\nInterested in what you are missing? See https://t.me/bbtmvall for all unfiltered posts.\n\n**Fun fact** - if you are couple and looking for a flat together, then you create a group chat and add this bot to it. Configure bot inside the group chat and bot will send notifications to a group chat instead of each personally. :)")
 }
 
 func handleCommandEnable(m *telebot.Message) {

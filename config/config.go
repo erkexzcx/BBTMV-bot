@@ -8,7 +8,8 @@ import (
 
 type Config struct {
 	Telegram struct {
-		ApiKey string `yaml:"api_key"`
+		ApiKey    string `yaml:"api_key"`
+		AllChatID int64  `yaml:"all_chat_id"`
 	} `yaml:"telegram"`
 }
 

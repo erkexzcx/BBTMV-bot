@@ -82,37 +82,37 @@ func (p *Post) FormatTelegramMessage(IDInDatabase int64) string {
 	fmt.Fprintf(&sb, "%d. %s\n", IDInDatabase, p.Link)
 
 	if p.Phone != "" {
-		fmt.Fprintf(&sb, "» *Tel. numeris:* [%s](tel:%s)\n", p.Phone, p.Phone)
+		fmt.Fprintf(&sb, "» *Phone:* [%s](tel:%s)\n", p.Phone, p.Phone)
 	}
 
 	if p.Address != "" {
-		fmt.Fprintf(&sb, "» *Adresas:* [%s](https://maps.google.com/?q=%s)\n", p.Address, url.QueryEscape(p.Address))
+		fmt.Fprintf(&sb, "» *Address:* [%s](https://maps.google.com/?q=%s)\n", p.Address, url.QueryEscape(p.Address))
 	}
 
 	if p.Price != 0 && p.Area != 0 {
-		fmt.Fprintf(&sb, "» *Kaina:* `%d€ (%.2f€/m²)`\n", p.Price, float64(p.Price)/float64(p.Area))
+		fmt.Fprintf(&sb, "» *Price:* `%d€ (%.2f€/m²)`\n", p.Price, float64(p.Price)/float64(p.Area))
 	} else if p.Price != 0 {
-		fmt.Fprintf(&sb, "» *Kaina:* `%d€`\n", p.Price)
+		fmt.Fprintf(&sb, "» *Price:* `%d€`\n", p.Price)
 	}
 
 	if p.Rooms != 0 && p.Area != 0 {
-		fmt.Fprintf(&sb, "» *Kambariai:* `%d (%dm²)`\n", p.Rooms, p.Area)
+		fmt.Fprintf(&sb, "» *Rooms:* `%d (%dm²)`\n", p.Rooms, p.Area)
 	} else if p.Rooms != 0 {
-		fmt.Fprintf(&sb, "» *Kambariai:* `%d`\n", p.Rooms)
+		fmt.Fprintf(&sb, "» *Rooms:* `%d`\n", p.Rooms)
 	}
 
 	if p.Year != 0 {
-		fmt.Fprintf(&sb, "» *Statybos metai:* `%d`\n", p.Year)
+		fmt.Fprintf(&sb, "» *Year built:* `%d`\n", p.Year)
 	}
 
 	if p.Heating != "" {
-		fmt.Fprintf(&sb, "» *Šildymo tipas:* `%s`\n", p.Heating)
+		fmt.Fprintf(&sb, "» *Heating:* `%s`\n", p.Heating)
 	}
 
 	if p.Floor != 0 && p.FloorTotal != 0 {
-		fmt.Fprintf(&sb, "» *Aukštas:* `%d/%d`\n", p.Floor, p.FloorTotal)
+		fmt.Fprintf(&sb, "» *Floor:* `%d/%d`\n", p.Floor, p.FloorTotal)
 	} else if p.Floor != 0 {
-		fmt.Fprintf(&sb, "» *Aukštas:* `%d`\n", p.Floor)
+		fmt.Fprintf(&sb, "» *Floor:* `%d`\n", p.Floor)
 	}
 
 	return sb.String()

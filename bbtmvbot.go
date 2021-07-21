@@ -12,8 +12,9 @@ import (
 )
 
 var (
-	db *database.Database
-	tb *telebot.Bot
+	db        *database.Database
+	tb        *telebot.Bot
+	allChatID int64
 )
 
 func Start(c *config.Config, dbPath *string) {
@@ -23,6 +24,8 @@ func Start(c *config.Config, dbPath *string) {
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	allChatID = c.Telegram.AllChatID
 
 	// Connect to Telegram
 	poller := &telebot.LongPoller{Timeout: 10 * time.Second}
@@ -66,16 +69,25 @@ func refreshWebsites() {
 }
 
 func processPost(post *website.Post) {
-	if post.IsExcludable() {
-		db.AddPost(post.Link)
+	excludable := post.IsExcludable()
+	insertedPostID := db.AddPost(post.Link)
+	msg := post.FormatTelegramMessage(insertedPostID)
+
+	allMsg := msg + "\n» *Excluded:* "
+	if excludable {
+		allMsg += "Yes"
+	} else {
+		allMsg += "No"
+	}
+	sendTelegram(allChatID, msg)
+
+	if excludable {
 		return
 	}
 
-	insertedPostID := db.AddPost(post.Link)
-
 	telegramIDs := db.GetInterestedTelegramIDs(post.Price, post.Rooms, post.Year)
 	for _, telegramID := range telegramIDs {
-		sendTelegram(telegramID, post.FormatTelegramMessage(insertedPostID))
+		sendTelegram(telegramID, msg)
 	}
 }
 

@@ -217,7 +217,6 @@ Galima skambinti ir poilsio dienomis, jei neatsiliepiu - perskambinu.
 		`,
 		Expected: true,
 	},
-	/* TEST FOR DESCRIPTIONS WITHOUT FEE */
 	{
 		Provided: `
 Tarpininkavimo mokestis nera taikomas!
@@ -265,6 +264,53 @@ nėra taikomas tarpininkavimo mokestis
 nuomos mokestis + komunaliniai
 		`,
 		Expected: false,
+	},
+	{
+		Provided: `
+
+		`,
+		Expected: false,
+	},
+	{
+		Provided: `
+Karoliniškėse!
+NĖRA TARPININKAVIMO MOKESČIO!
+
+BENDRA INFORMACIJA:
+		`,
+		Expected: false,
+	},
+	{
+		Provided: `
+BE TARPININKU !
+
+Nuomojamas 2 kamb. butas su balkonu Vilniuje,		
+		`,
+		Expected: false,
+	},
+	{
+		Provided: `
+
+BUTAS LAISVAS. NUOMININKAMS NETAIKOMAS ADMINISTRACINIS MOKESTIS!
+
+		`,
+		Expected: false,
+	},
+	{
+		Provided: `
+
+Jei butas tiks, bus taikomas agentūros mokestis.
+
+		`,
+		Expected: true,
+	},
+	{
+		Provided: `
+
+Vienkartinis tarpininkavimo mokestis (jei butas tiks).
+
+		`,
+		Expected: true,
 	},
 }
 
